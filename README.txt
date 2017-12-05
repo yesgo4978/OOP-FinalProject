@@ -40,15 +40,15 @@ Click on edit to see the proper view of the pannel
 |---------------------------------------------------|
 | 	               RECEIPT PAGE            | DATE   |             <------- JPanel 5           
 |---------------------------------------------------|                                         
-|     * BILL 1 $DUE + $AMOUNT PAID                  |                                         
+|     * BILL 1 $DUE - $AMOUNT PAID                  |                                         
 | --------------------------------------------------|                                           
-|     * BILL 2 $DUE + $AMOUNT PAID           		    |                                            
+|     * BILL 2 $DUE - $AMOUNT PAID           		    |                                            
 | --------------------------------------------------|                                         
-|     * BILL 3 $DUE + $AMOUNT PAID            		  |             <------- JPanel 6  Is the next screen that will show up once the      
+|     * BILL 3 $DUE - $AMOUNT PAID            		  |             <------- JPanel 6  Is the next screen that will show up once the      
 |-------------------------------------------------- |                                user presses "Pay" this screen will print out
-|     * BILL 4 $DUE + $AMOUNT PAID            		  |                                a receipt style page with the option to save.
+|     * BILL 4 $DUE - $AMOUNT PAID            		  |                                a receipt style page with the option to save.
 |---------------------------------------------------|                                         
-|     * BILL 5 $DUE + $AMOUNT PAID            		  |                                         
+|     * BILL 5 $DUE - $AMOUNT PAID            		  |                                         
 | --------------------------------------------------|                                         
 |  								                |  Save to Page   |             <-------- JPanel 7          
 -----------------------------------------------------                                         
