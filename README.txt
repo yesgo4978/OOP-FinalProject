@@ -1,5 +1,5 @@
 # OOP-FinalProject
-Click on either edit or Raw to see the proper view of the pannel
+Click on edit to see the proper view of the pannel
                                                                                       JFrame 0
 |---------------------------------------------------|
 | Budget Plan                                       |
