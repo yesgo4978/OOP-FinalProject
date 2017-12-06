@@ -14,7 +14,7 @@ Click on edit to see the proper view of the pannel
 |---------------------------------------------------|
 | File |                                   | DATE   |             <------- JMenu 
 |---------------------------------------------------|                                         
-|     * BILL 1  |  $AMOUNT  |    PERCENT (show)     |                                         
+|     * BILL 1  |  $AMOUNT  |    PERCENT (Hidden)   |                                         
 | --------------------------------------------------|                                                   
 |     * BILL 2  |  $AMOUNT  |    PERCENT            |                                            
 | --------------------------------------------------|                                         
@@ -43,7 +43,7 @@ Click on edit to see the proper view of the pannel
 |---------------------------------------------------|
 | File |                                   | DATE   |             <------- MenuBar
 |---------------------------------------------------|                               JFrame 2  
-|     * BILL 1  |  $AMOUNT  |    PERCENT(hidden)    |                                         
+|     * BILL 1  |  $AMOUNT  |    PERCENT(show)      |                                         
 | --------------------------------------------------|                                                   
 |     * BILL 2  |  $AMOUNT  |    PERCENT            |                                            
 | --------------------------------------------------|                                         
