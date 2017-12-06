@@ -1,5 +1,3 @@
-						Bill List
-
 mortgage / rent  / property Tax / association fees
 car loan
 credit card 
@@ -10,3 +8,9 @@ gas
 electricity
 phone
 living expenses
+
+
+
+
+
+15 IS THE LIMIT
