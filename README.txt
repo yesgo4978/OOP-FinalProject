@@ -60,7 +60,7 @@ Click on edit to see the proper view of the pannel
 |---------------------------------------------------|
 | 	               RECEIPT PAGE            | DATE   |             <------- JPanel 7          
 |---------------------------------------------------|                                         
-|     * BILL 1 $DUE - $AMOUNT PAID                  |                                         
+|     * BILL 1 $DUE - $AMOUNT PAID  = $BalRemaining |                                         
 | --------------------------------------------------|                                           
 |     * BILL 2 $DUE - $AMOUNT PAID           		    |                                            
 | --------------------------------------------------|                                         
