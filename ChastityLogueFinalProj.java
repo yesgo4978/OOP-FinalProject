@@ -73,28 +73,49 @@ public class ChastityLogueFinalProj {//only to show the screen
 
 /*The Controller (or the mediator)
  * get (grab from the model and send to the view)
- *    send cost/pay (set) to model
+ *    send cost/pay/billArray (set) to model
  * set (grab from the get)
- *    send cost/pay to get
+ *    send cost/pay/billArray to get/
  *constructor
  *toString (set "From your payment $var.format(pay) goes toward (stringName)")
  *use var.format(pay) to get 0.00
  */
 
 /*The Model (all da math!)
- * use the get method
- * get the bill array and the double pay
- * make a constant MAX
- * add all the bills together
- * for (int i = 0; i<bill.length; i++) {
- *    total += bill[i]; //also find the lowest bill
- *    if (bill[i] <50&&pay > 500
- *}
- *for (int j = 0; i<bill.length; i++){
- *    if this bill is less than 50 and pay is greater than MAX and (total - this) bill is 
- *    greater than MAX
- *percentage chosen for certain bills
- *some for loop to go through bills after a button (10% 20%...) is pressed to keep everything
- *at 100%
- *percentage * pay
+* public class Model {
+*   //fuck these tabs
+*   grab the array with the get method
+*   grab the double pay
+*   add the bills together 
+*   double total = 0;
+*   double min = 100 //some max number
+*   for (int i = 0; i<bill.length; i++) {
+*      total += bill[i]; //also find the lowest bill
+*      if(bill[i] < min) {
+*         min = bill[i];
+*      }//if{end
+*   }//for{end
+*   if(payLowest.isChecked) {//right notation?
+*      pay -= min;
+*   }//if{end
+*   double toPay;
+*   double percentage;
+*   for(int i =0; i<bill.length[i]; i++ { //screw all these for loops D:
+*      percentage = bill[i]/total;
+*      ofPay = percentage *pay;
+*   }//endForLoop
+*   //give controller percentage for view
+*   //give controller ofPay
+*   //clicked pay
+*   
+*}//class }end
+* I tried to use:
+* while(i<num) { //num being the number of bills
+*   bill[i] = bill[i] - ofPay //but it didn't repopulate
+* }
+* and then:
+* while(i<num) {
+*   System.out.print("New Amount of " +name[i]);
+*   System.out.println(" is %.2d) + bill[i]); 
+* } //but this didn't work, not sure why
  */ 
