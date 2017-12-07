@@ -1,11 +1,9 @@
-/* Chastity Logue
- * This should only be the view, the showing and user interaction
- * It includes the Frame which holds the menu and the frame
- * Which in turn hold the menu options save, or serialization
- * And hopefully the percentage options
- * The frame sets up the screen, the main method actually creates it
- * The original Bills file is in DadsProgram file
- */
+/* Yesenia - (what you did) visual design
+* Chastity - (what you did) original design
+* Gabe - (what you did)  
+* Jeff - (what you did)
+* lots of brainstorming
+*/
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -18,6 +16,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+/*This should be the view, the showing and user interaction
+* It includes the Frame which holds the menu and the frame
+* Which in turn hold the menu options save, open, load...
+* The frame sets up the screen, the main method actually creates it
+*/
 
 class Frame extends JFrame{ //the view
 	Scanner scan;
