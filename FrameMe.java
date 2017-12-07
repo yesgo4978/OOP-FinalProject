@@ -152,7 +152,7 @@ class Frame extends JFrame{
 		});
 		
 		JButton btnSave = new JButton("Save");
-		btnPay.addActionListener(new ActionListener() {
+		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "You've pressed the Save... button!"); 
 				// Action to pay bills is done in here
