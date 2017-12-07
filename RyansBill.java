@@ -1,3 +1,5 @@
+//Ryan helped out
+//Bill class creates bills
 public class Bill {
 	private String billName;
 	private int billTotal;
