@@ -87,7 +87,6 @@ public class ChastityLogueFinalProj {//only to show the screen
 
 /*The Model (all da math!)
 * public class Model {
-*   //fuck these tabs
 *   grab the array with the get method
 *   grab the double pay
 *   add the bills together 
@@ -113,13 +112,4 @@ public class ChastityLogueFinalProj {//only to show the screen
 *   //clicked pay
 *   
 *}//class }end
-* I tried to use:
-* while(i<num) { //num being the number of bills
-*   bill[i] = bill[i] - ofPay //but it didn't repopulate
-* }
-* and then:
-* while(i<num) {
-*   System.out.print("New Amount of " +name[i]);
-*   System.out.println(" is %.2d) + bill[i]); 
-* } //but this didn't work, not sure why
  */ 
