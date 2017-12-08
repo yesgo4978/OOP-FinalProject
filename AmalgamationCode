@@ -114,7 +114,7 @@ class SavingBill {
 }
 
 class Frame extends JFrame {
-	public ArrayList<MakeBill> makeBill;
+	public ArrayList<MakeBill> bills;
 	Scanner scan;
 	MakeBill bill = new MakeBill();
 	
@@ -126,7 +126,7 @@ class Frame extends JFrame {
 		JMenuItem save1 = new JMenuItem("Save as Text"); 
 		JMenuItem save2 = new JMenuItem("Save as JSON");
 		JMenuItem save3 = new JMenuItem("Save as XML");	
-		makeBill = new ArrayList<MakeBill>();
+		bills = new ArrayList<MakeBill>();
 		
 		fopen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -200,10 +200,10 @@ class Frame extends JFrame {
 				String billName = JOptionPane.showInputDialog(null,"What is the name of this bill");
 				String bt = JOptionPane.showInputDialog(null,"What is the total cost?");
 				double billTotal = Double.parseDouble(bt);
-				MakeBill newBill = new MakeBill();
-				newBill.setBillName(billName);
-				newBill.setBillTotal(billTotal);
-				makeBill.add(newBill);
+				MakeBill oneBill = new MakeBill();
+				oneBill.setBillName(billName);
+				oneBill.setBillTotal(billTotal);
+				bills.add(oneBill);
 				repaint();
 			}
 		});
@@ -256,9 +256,9 @@ class Frame extends JFrame {
 				String paidTotal = JOptionPane.showInputDialog(null,"How much are you paying today?");
 				double payment = Double.parseDouble(paidTotal);
 				bill.setAmountPaid(payment);
-				payBills.pay(makeBill,payment);
-				for(int i = 0; i<makeBill.size(); i++) {
-					System.out.println(makeBill.get(i).toString());
+				payBills.pay(bills,payment);
+				for(int i = 0; i<bills.size(); i++) {
+					System.out.println(bills.get(i).toString());
 				}
 				if(payBills.remainder > 0) {
 					System.out.println(payBills.remainder);
