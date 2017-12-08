@@ -44,20 +44,22 @@ class Frame extends JFrame{
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Frame frm = new Frame();
+				
 				JFileChooser jfc = new JFileChooser();
-				//This will give the user the option to select the format to save to.
-				FileNameExtensionFilter txt = new FileNameExtensionFilter("Text", "txt"); {
-					PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(new File())));}
+				
+				FileNameExtensionFilter txt = new FileNameExtensionFilter("Text", "txt");
 				FileNameExtensionFilter xml = new FileNameExtensionFilter("XML", "xml");
 				FileNameExtensionFilter json = new FileNameExtensionFilter("JSON", "json");
 				 jfc.setFileFilter(txt);
 				 jfc.setFileFilter(xml);
 				 jfc.setFileFilter(json);
-				    int returnVal = jfc.showSaveDialog(jfc);
+				    int returnVal = jfc.showSaveDialog(null);
 				    if(returnVal == JFileChooser.APPROVE_OPTION) {
-				       System.out.println("You chose to save this file: " +
-				            jfc.getSelectedFile().getName());
-				    }
+				    	try {
+				    		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(jfc.getSelectedFile())));
+				    	} catch (Exception ex) {
+				    		
+				    	}
 				JOptionPane.showMessageDialog(null, "Your file was successfully saved!");
 			}
 		});
