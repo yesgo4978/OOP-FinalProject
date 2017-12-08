@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+public class payBills {
+
+	public static void pay(ArrayList<MakeBill> makeBill,double payment) {
+		double finalTotal = 0;
+		double percent = 0;
+		for(int i = 0; i<makeBill.size(); i++) {
+			finalTotal +=makeBill.get(i).getBillTotal();
+		}
+		for(int i=0; i<makeBill.size(); i++) {
+			percent = makeBill.get(i).getBillTotal() / finalTotal;
+			makeBill.get(i).setAmountPaid(percent*payment);
+		}
+		
+		
+	}
+
+}
