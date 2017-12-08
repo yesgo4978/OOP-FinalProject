@@ -64,7 +64,7 @@ class Frame extends JFrame{
 				System.exit(0);
 			}
 		});
-
+		
 		menu.add(file);
 		file.add(fopen);
 		file.add(savemnu);
@@ -96,10 +96,12 @@ class Frame extends JFrame{
 		
 		JButton btnAdd = new JButton("+ Add...");
 		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You've pressed the Add Bill button!"); 
-				//addBill(); function to add bills to panmiddle
-			}
+			public void actionPerformed(ActionEvent e) { //modified
+				String billName = JOptionPane.showInputDialog(null, "What is the name of this bill?");
+				String bt = JOptionPane.showInputDialog(null, "What is the total cost?");
+				double billTotal = Double.parseDouble(bt);
+				Bill bill = new Bill(billName,billTotal);
+			}//modified
 		});
 // Middle Panel Below 
 		
@@ -183,5 +185,4 @@ public class FrameMe {
 		Frame frame = new Frame();
 		frame.setVisible(true);
 	}
-
 }
