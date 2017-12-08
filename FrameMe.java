@@ -25,45 +25,51 @@ class Frame extends JFrame{
 		JMenuBar menu = new JMenuBar();
 		JMenu file = new JMenu("File");
 		JMenu savemnu = new JMenu("Save");
-		JMenuItem fopen = new JMenuItem("Open");
-		JMenuItem save1 = new JMenuItem("Save as Text"); 
-		JMenuItem save2 = new JMenuItem("Save as JSON");
-		JMenuItem save3 = new JMenuItem("Save as XML");	
+		//JMenuItem fopen = new JMenuItem("Open");
+		//JMenuItem save1 = new JMenuItem("Save as Text"); 
+		//JMenuItem save2 = new JMenuItem("Save as JSON");
+		//JMenuItem save3 = new JMenuItem("Save as XML");	
 		
-		fopen.addActionListener(new ActionListener() {
+		JMenuItem Open = new JMenuItem("Open"); //This gives the user the option to open up a file that was previously saved
+		Open.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You've pressed the Open button!"); 
-				//Optional addition, address this last if you have time, if not, comment out/remove
+				JFileChooser jfc = new JFileChooser();
+				jfc.showOpenDialog(null);
+				JOptionPane.showMessageDialog(null, "Welcome Back!"); 
 			}
 		});
+		file.add(Open);
 		
-		save1.addActionListener(new ActionListener() {
+		JMenuItem save = new JMenuItem("Save"); //the serialization
+		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You've pressed the save button!"); 
-				//Text save
+				Frame frm = new Frame();
+				JFileChooser jfc = new JFileChooser();
+				//This will give the user the option to select the format to save to.
+				FileNameExtensionFilter txt = new FileNameExtensionFilter("Text", "txt"); {
+					PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(new File())));}
+				FileNameExtensionFilter xml = new FileNameExtensionFilter("XML", "xml");
+				FileNameExtensionFilter json = new FileNameExtensionFilter("JSON", "json");
+				 jfc.setFileFilter(txt);
+				 jfc.setFileFilter(xml);
+				 jfc.setFileFilter(json);
+				    int returnVal = jfc.showSaveDialog(jfc);
+				    if(returnVal == JFileChooser.APPROVE_OPTION) {
+				       System.out.println("You chose to save this file: " +
+				            jfc.getSelectedFile().getName());
+				    }
+				JOptionPane.showMessageDialog(null, "Your file was successfully saved!");
 			}
 		});
+		file.add(save);
 		
-		save2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You've pressed the save2 button!"); 
-				//JSON Save
-			}
-		});		
-		
-		save3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You've pressed the save3 button!"); 
-				//XML Save
-			}
-		});
-		
-		JMenuItem fexit = new JMenuItem("Exit"); //the serialization
-		fexit.addActionListener(new ActionListener() {
+		JMenuItem exit = new JMenuItem("Exit"); //closes the program
+		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
+		file.add(exit);
 		
 		menu.add(file);
 		file.add(fopen);
