@@ -48,24 +48,28 @@ class MakeBill {
 	}
 	public void setAmountPaid(double amountPaid) {
 		this.amountPaid = amountPaid;
+		setPercentPaid();
+		setTotalRemaining();
 	}
-	public void setPercentPaid(double percentPaid) {
-		this.percentPaid = percentPaid;
+	private void setPercentPaid() {
+		percentPaid = (amountPaid/billTotal) *100;
 	}
 	public void setPayment(double payment) {
 		this.payment = payment;
 	}
-	public void setTotalRemaining(double totalRemaining) {
-		this.totalRemaining = totalRemaining;
+	private void setTotalRemaining() {
+		totalRemaining = billTotal - amountPaid;
+		if(totalRemaining < 0) {
+			totalRemaining = 0;
+		}
 	}
 	public void setBillName(String billName) {
 		this.billName = billName;
 	}
 	@Override
 	public String toString() {
-		return String.format("%s costs %.2d, paid %.2d, remaining %.2d",billName,billTotal,amountPaid,totalRemaining);
+		return String.format("%s costs $%.2f, paid $%.2f, remaining $%.2f",billName,billTotal,amountPaid,totalRemaining);
 	}
-	
 }
 
 class BillPanel extends JPanel {	
@@ -101,6 +105,7 @@ class SavingBill {
 		}
 		public boolean loadBills(File f) {
 			try{
+				
 				return true;
 			}catch(Exception ex){
 				return false;
@@ -109,8 +114,6 @@ class SavingBill {
 }
 
 class Frame extends JFrame {
-	private ArrayList<String> billName;
-	private ArrayList<Double> billTotal;
 	public ArrayList<MakeBill> makeBill;
 	Scanner scan;
 	MakeBill bill = new MakeBill();
@@ -201,6 +204,7 @@ class Frame extends JFrame {
 				newBill.setBillName(billName);
 				newBill.setBillTotal(billTotal);
 				makeBill.add(newBill);
+				repaint();
 			}
 		});
 		
@@ -252,9 +256,12 @@ class Frame extends JFrame {
 				String paidTotal = JOptionPane.showInputDialog(null,"How much are you paying today?");
 				double payment = Double.parseDouble(paidTotal);
 				bill.setAmountPaid(payment);
+				payBills.pay(makeBill,payment);
 				for(int i = 0; i<makeBill.size(); i++) {
-					System.out.print(makeBill.get(i).getBillName()+ " ");
-					System.out.println(makeBill.get(i).getBillTotal());
+					System.out.println(makeBill.get(i).toString());
+				}
+				if(payBills.remainder > 0) {
+					System.out.println(payBills.remainder);
 				}
 			}
 		});
