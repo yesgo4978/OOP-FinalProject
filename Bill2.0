@@ -1,0 +1,58 @@
+import java.util.ArrayList;
+
+public class Bill {
+	private String billName;
+	private double billTotal;
+	private double amountPaid;
+	private double percentPaid;
+	private double totalRemaining;
+	private ArrayList<String> name;
+	private ArrayList<Double> total;
+	public Bill(String billName, double billTotal) {
+		setBillName(billName);
+		setBillTotal(billTotal);
+		setAmountPaid(0);
+		setTotalRemaining();
+		setPercentPaid();
+		name = new ArrayList<String>();
+		name.add(billName);
+		total = new ArrayList<Double>();
+		total.add(billTotal);
+		for(int i=0; i< name.size(); i++) {
+			System.out.print(name.get(i)+" ");
+			System.out.println(total.get(i));
+		}
+	}
+	public void setBillName(String billName) {
+		this.billName = billName;
+	}
+	public String getBillName() {
+		return billName;
+	}
+	public void setBillTotal(double billTotal) {
+		if (billTotal < 0) {
+			billTotal = 0;
+		}
+		this.billTotal = billTotal;
+	}
+	public double getBillTotal() {
+		return billTotal;
+	}
+	public void setAmountPaid(double amountPaid) {
+		this.amountPaid = amountPaid;
+		setTotalRemaining();
+		setPercentPaid();
+	}
+	public double getAmountPaid() {
+		return amountPaid;
+		}
+	private void setPercentPaid() {
+		percentPaid = (totalRemaining / billTotal) * 100;
+	}
+	public double getPercentPaid() {
+		return percentPaid;
+	}
+	private void setTotalRemaining() {
+		totalRemaining = billTotal - amountPaid;
+	}
+}
