@@ -1,0 +1,46 @@
+JMenuItem save = new JMenuItem("Save"); //the serialization
+		save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Frame frm = new Frame();
+				
+				JFileChooser jfc = new JFileChooser();
+				
+				FileNameExtensionFilter txt = new FileNameExtensionFilter("Text", "txt");
+				FileNameExtensionFilter xml = new FileNameExtensionFilter("XML", "xml");
+				FileNameExtensionFilter json = new FileNameExtensionFilter("JSON", "json");
+				 jfc.setFileFilter(txt);
+				 jfc.setFileFilter(xml);
+				 jfc.setFileFilter(json);
+				    int returnVal = jfc.showSaveDialog(null);
+				    if(returnVal == JFileChooser.APPROVE_OPTION) {
+				    	try {
+				    		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(jfc.getSelectedFile())));
+				    	} catch (Exception ex) {
+				    		
+				    	}
+				    	
+				    }
+
+				
+				//jfc.showSaveDialog(null);
+				//jfc.getSelectedFile();
+				JOptionPane.showMessageDialog(null, "Your file was successfully saved!");
+				//serialization 2
+				//showInputDialog
+			}
+		});
+		file.add(save);
+		
+		JMenuItem exit = new JMenuItem("Exit"); //the serialization
+		exit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				//serialization 3
+				//showInputDialog
+			}
+		});
+		file.add(exit);
+		
+		menu.add(file);
+		setJMenuBar(menu);
+	}
