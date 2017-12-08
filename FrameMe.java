@@ -1,7 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.awt.Graphics;
 
 
 class Frame extends JFrame{ 
@@ -84,6 +84,7 @@ class Frame extends JFrame{
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
 		
+		
 		JPanel pannorth = new JPanel();
 		pannorth.setLayout(new GridLayout(1,3));
 		JPanel pnLeft = new JPanel();
@@ -94,7 +95,7 @@ class Frame extends JFrame{
 		pannorth.add(pnRight);	//unused, but keep for positioning
 		
 		
-		JButton btnAdd = new JButton("+ Add...");
+		JButton btnAdd = new JButton("+ Add Bill");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { //modified
 				String billName = JOptionPane.showInputDialog(null, "What is the name of this bill?");
@@ -103,36 +104,48 @@ class Frame extends JFrame{
 				Bill bill = new Bill(billName,billTotal);
 			}//modified
 		});
+	
+		
 // Middle Panel Below 
 		
+		
 		JPanel panmiddle = new JPanel();
-		panmiddle.setLayout(new GridLayout(15,5));
+		panmiddle.setLayout(new GridLayout(1,2));
 		
-		JPanel pmLeft1 = new JPanel();
-		JPanel pmLeft2 = new JPanel();
-		JPanel pmMid = new JPanel();
-		JPanel pmRight1 = new JPanel();
-		JPanel pmRight2 = new JPanel();
+		// Top Middle Panel 
+		
+		JPanel pmn = new JPanel();
+		pmn.setLayout(new GridLayout(1,5));
+		
+		JPanel pmn1 = new JPanel();
+		JPanel pmn2 = new JPanel();
+		JPanel pmn3 = new JPanel();
+		JPanel pmn4 = new JPanel();
+		JPanel pmn5 = new JPanel();
 
-		JLabel pmleft1 = new JLabel("Name");
-		JLabel pmleft2 = new JLabel("Amount");
-		JLabel pmmid = new JLabel("Amount Paid");
-		JLabel pmright1 = new JLabel("Percent Paid");
-		JLabel pmright2 = new JLabel("Total Remaining");
-		
+		JLabel pmnleft1 = new JLabel("Name");
+		JLabel pmnleft2 = new JLabel("Amount");
+		JLabel pmnmid = new JLabel("Amount Paid");
+		JLabel pmnright1 = new JLabel("Percent Paid");
+		JLabel pmnright2 = new JLabel("Total Remaining");
 
-		panmiddle.add(pmLeft1);
-		panmiddle.add(pmLeft2);
-		panmiddle.add(pmMid);
-		panmiddle.add(pmRight1);
-		panmiddle.add(pmRight2);
+		panmiddle.add(pmn1);
+		panmiddle.add(pmn2);
+		panmiddle.add(pmn3);
+		panmiddle.add(pmn4);
+		panmiddle.add(pmn5);
 		
-		pmLeft1.add(pmleft1);
-		pmLeft2.add(pmleft2);
-		pmMid.add(pmmid);
-		pmRight1.add(pmright1);
-		pmRight2.add(pmright2);
 		
+		pmn1.add(pmnleft1);
+		pmn2.add(pmnleft2);
+		pmn3.add(pmnmid);
+		pmn4.add(pmnright1);
+		pmn5.add(pmnright2);
+
+		//Lower Middle Panel
+		
+		JPanel pms = new JPanel();
+		pms.setLayout(new BorderLayout());
 		
 // South Panel Below
 		
@@ -148,26 +161,25 @@ class Frame extends JFrame{
 		JButton btnPay = new JButton("Pay");
 		btnPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You've pressed the Pay button!"); 
+				String paidTotal = JOptionPane.showInputDialog(null, "How much are you paying today?"); 
 				// Action to pay bills is done in here
+				
 			}
 		});
 		
-		JButton btnSave = new JButton("Save");
-		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You've pressed the Save... button!"); 
-				// Action to pay bills is done in here
-			}
-		});
+		
 // Adding to c Container below 
+		
 		
 		c.add(pannorth, BorderLayout.NORTH);
 		c.add(panmiddle, BorderLayout.CENTER);
 		c.add(pansouth, BorderLayout.SOUTH);
+		
+		panmiddle.add(pmn);
+		panmiddle.add(pms);
+		
 		pnLeft.add(btnAdd);
 		psMid.add(btnPay);
-		psRight.add(btnSave);
 		setupMenu();
 
 // Putting the Frame together below
@@ -183,6 +195,7 @@ class Frame extends JFrame{
 public class FrameMe {
 	public static void main(String[] args) {
 		Frame frame = new Frame();
+		frame.setSize(650,600);
 		frame.setVisible(true);
 	}
 }
