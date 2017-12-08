@@ -5,9 +5,10 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -17,6 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 class MakeBill {
 	private double billTotal;
 	private double amountPaid;
@@ -59,16 +61,13 @@ class MakeBill {
 	}
 	private void setTotalRemaining() {
 		totalRemaining = billTotal - amountPaid;
-		if(totalRemaining < 0) {
-			totalRemaining = 0;
-		}
 	}
 	public void setBillName(String billName) {
 		this.billName = billName;
 	}
 	@Override
 	public String toString() {
-		return String.format("%s costs $%.2f, paid $%.2f, remaining $%.2f",billName,billTotal,amountPaid,totalRemaining);
+		return String.format("  %s \t               %.2f \t\t %.2f \t          %.2f%% \t\t%.2f",billName,billTotal,amountPaid,percentPaid,totalRemaining);
 	}
 }
 
@@ -113,12 +112,44 @@ class SavingBill {
 		}
 }
 
+class PMSPanel extends JPanel {
+	private JTextArea funbox;
+	private ArrayList<MakeBill> bills;
+	public void setText(String t) {
+		funbox.setText(t);
+	}
+	public void updateList() {
+		String text = "";
+		for (MakeBill mb : bills) {
+			text = text + "\n" + mb.toString();
+		}
+		funbox.setText(text);
+	}
+	public PMSPanel(ArrayList<MakeBill> bills) {
+		this.bills = bills;
+		setLayout(new BorderLayout());
+		funbox = new JTextArea();
+		add(funbox);
+		funbox.setEditable(false);
+		funbox.setText("Hello");
+		funbox.setBounds(35, 5,200,200);
+		funbox.setSize(580,600);
+		funbox.setText("Welcome to Bill Buddy! \n\nPlease click the 'add bill' button to begin your Bill Buddy Experience! \n\n Have a WONDERFUL day.");
+	}
+}
 class Frame extends JFrame {
+	
+	
+	
+	private JTextArea funbox;
 	public ArrayList<MakeBill> makeBill;
+	private PMSPanel pms;
 	Scanner scan;
 	MakeBill bill = new MakeBill();
 	
-	public void setupMenu() {
+	public void setupMenu()  throws IOException {
+		setIconImage(new ImageIcon (getClass().getResource("BillDaddy.png"
+				+ "")).getImage());
 		JMenuBar menu = new JMenuBar();
 		JMenu file = new JMenu("File");
 		JMenu savemnu = new JMenu("Save");
@@ -126,7 +157,6 @@ class Frame extends JFrame {
 		JMenuItem save1 = new JMenuItem("Save as Text"); 
 		JMenuItem save2 = new JMenuItem("Save as JSON");
 		JMenuItem save3 = new JMenuItem("Save as XML");	
-		makeBill = new ArrayList<MakeBill>();
 		
 		fopen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -178,12 +208,15 @@ class Frame extends JFrame {
 		menu.add(file);
 		setJMenuBar(menu);
 	}
-	public void setupScreen() {
+	public void setupScreen() throws IOException {
+		makeBill = new ArrayList<MakeBill>();
 		setBounds(100,100,500,500);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle("Bill Plan Application");
+		setTitle("Bill Buddy");
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
+
+// NORTH PANEL
 		
 		JPanel pannorth = new JPanel();
 		pannorth.setLayout(new GridLayout());
@@ -204,13 +237,17 @@ class Frame extends JFrame {
 				newBill.setBillName(billName);
 				newBill.setBillTotal(billTotal);
 				makeBill.add(newBill);
-				repaint();
+				pms.updateList();		
 			}
 		});
 		
-		JPanel panmiddle = new JPanel();
-		panmiddle.setLayout(new GridLayout(1,2));
+// MIDDLE PANEL
 		
+		JPanel panmiddle = new JPanel();
+		panmiddle.setLayout(new BorderLayout());
+
+// MIDDLE PANEL, NORTH
+		pms = new PMSPanel(makeBill);
 		JPanel pmn = new JPanel();
 		pmn.setLayout(new GridLayout(1,5));
 		
@@ -232,14 +269,24 @@ class Frame extends JFrame {
 		pmn4.add(pmnright1);
 		pmn5.add(pmnright2);
 		
-		panmiddle.add(pmn1);
-		panmiddle.add(pmn2);
-		panmiddle.add(pmn3);
-		panmiddle.add(pmn4);
-		panmiddle.add(pmn5);
+		pmn.add(pmn1);
+		pmn.add(pmn2);
+		pmn.add(pmn3);
+		pmn.add(pmn4);
+		pmn.add(pmn5);
 		
-		JPanel pms = new JPanel();
+
+		
+// MIDDLE PANEL, SOUTH
+		
 		pms.setLayout(new BorderLayout());
+		panmiddle.add(pms, BorderLayout.SOUTH);
+		
+		
+		
+		
+		
+// SOUTH PANEL 
 		
 		JPanel pansouth = new JPanel();
 		pansouth.setLayout(new GridLayout(1,3));
@@ -260,18 +307,20 @@ class Frame extends JFrame {
 					System.out.print(makeBill.get(i).getBillName()+ " ");
 					System.out.println(makeBill.get(i).getBillTotal());
 				}
-				payBills.pay(makeBill,payment);
+				Bill.pay(makeBill,payment);
 				for(int i = 0; i<makeBill.size(); i++) {
 					System.out.println(makeBill.get(i).toString());
 				}
-				System.out.println(payBills.remainder);
+				repaint();
 			}
+
 		});
-		
-		panmiddle.add(pmn);
-		panmiddle.add(pms);
+		panmiddle.add(pmn, BorderLayout.NORTH);
+		panmiddle.add(pms, BorderLayout.CENTER);
 		pnLeft.add(btnAdd);
 		psMid.add(btnPay);
+		
+		
 		
 		c.add(pannorth, BorderLayout.NORTH);
 		c.add(panmiddle, BorderLayout.CENTER);
@@ -279,12 +328,12 @@ class Frame extends JFrame {
 		
 		setupMenu();
 	}
-	public Frame() {
+	public Frame() throws IOException {
 		setupScreen();
 	}
 }
-public class Bill {
-	public static void main(String[] args) {
+public class FrameMe {
+	public static void main(String[] args) throws IOException {
 		Frame frame = new Frame();
 		frame.setSize(650,600);
 		frame.setVisible(true);
